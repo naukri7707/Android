@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HW2_4</string>
+    <string name="str_home">這是首頁</string>
+    <string name="str_goPage2">開啟第二頁</string>
+    <string name="str_goPage3">開啟第三頁</string>
+    <string name="str_goHome">回首頁</string>
+    <string name="str_page2">這是第二頁</string>
+    <string name="str_page3">這是第三頁</string>
+</resources>

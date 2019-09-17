@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HW2_3</string>
+    <string name="action_settings">Settings</string>
+    <string name="str_num1">上底</string>
+    <string name="str_num2">下底</string>
+    <string name="str_num3">高</string>
+    <string name="str_confirm">計算面積</string>
+</resources>

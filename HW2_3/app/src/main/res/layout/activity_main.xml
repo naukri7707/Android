@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_num1"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/str_num1"
+            android:textSize="@dimen/font_size" />
+
+        <EditText
+            android:id="@+id/edt_num1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/str_num1"
+            android:inputType="text"
+            android:textSize="@dimen/font_size"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_num2"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/str_num2"
+            android:textSize="@dimen/font_size" />
+
+        <EditText
+            android:id="@+id/edt_num2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/str_num2"
+            android:inputType="text"
+            android:textSize="@dimen/font_size"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_num3"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/str_num3"
+            android:textSize="@dimen/font_size" />
+
+        <EditText
+            android:id="@+id/edt_num3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/str_num3"
+            android:inputType="text"
+            android:textSize="@dimen/font_size"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_confirm" />
+</LinearLayout>

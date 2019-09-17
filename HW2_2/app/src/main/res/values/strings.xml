@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW2_2</string>
+    <string name="action_settings">Settings</string>
+    <string name="str_num1">第一個數值</string>
+    <string name="str_num2">第二個數值</string>
+    <string name="str_confirm">兩數相加</string>
+</resources>

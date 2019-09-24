@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW3_4</string>
+    <string name="str_showInfo">顯示計算器值</string>
+    <string name="str_sVal">初始值：</string>
+    <string name="str_eVal">終止值：</string>
+    <string name="str_addVal">增量值：</string>
+</resources>

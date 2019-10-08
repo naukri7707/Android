@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HW3_8</string>
+    <string name="str_lvInput">輸入座號:</string>
+    <string name="str_lv">座號</string>
+    <string name="str_drawAns">顯示分數</string>
+</resources>

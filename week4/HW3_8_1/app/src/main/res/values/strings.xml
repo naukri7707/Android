@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HW3_8_1</string>
+    <string name="str_lvInput">陣列大小:</string>
+    <string name="str_lv">數量</string>
+    <string name="str_drawAns">排序！</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HW3</string>
+    <string name="str_btnReplace">回傳</string>
+    <string name="str_bottom">底</string>
+    <string name="str_height">高</string>
+    <string name="btn_return">回傳</string>
+    <string name="unReturn">不回傳</string>
+</resources>

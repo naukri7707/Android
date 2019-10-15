@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW2</string>
+    <string name="str_src">初始字串</string>
+    <string name="str_replace">插入位置</string>
+    <string name="str_replaceText">插入文字</string>
+    <string name="str_btnReplace">插入</string>
+</resources>

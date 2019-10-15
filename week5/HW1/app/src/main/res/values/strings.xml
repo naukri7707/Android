@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW1</string>
+    <string name="str_src">初始字串</string>
+    <string name="str_replace">取代位置</string>
+    <string name="str_replaceText">取代文字</string>
+    <string name="str_btnReplace">取代</string>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HW3</string>
+    <string name="str_btnReplace">回傳</string>
+    <string-array name="selection">
+        <item name="item">A</item>
+        <item name="item">B</item>
+        <item name="item">C</item>
+        <item name="item">D</item>
+    </string-array>
+</resources>

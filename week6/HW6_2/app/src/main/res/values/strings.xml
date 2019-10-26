@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">HW6_2</string>
+
+    <string-array name="arr_class">
+        <item>運動</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="arr_sport">
+        <item>籃球</item>
+        <item>棒球</item>
+        <item>排球</item>
+        <item>桌球</item>
+    </string-array>
+
+    <string-array name="arr_other">
+        <item>看書</item>
+        <item>電玩</item>
+        <item>桌遊</item>
+        <item>下棋</item>
+    </string-array>
+</resources>

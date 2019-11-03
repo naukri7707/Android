@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         img_main.setOnTouchListener { _, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    time = event.downTime
+                    var time = event.downTime
                     prePos.x = event.x
                     prePos.y = event.y
                 }

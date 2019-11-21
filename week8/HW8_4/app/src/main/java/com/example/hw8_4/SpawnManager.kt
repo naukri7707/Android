@@ -28,7 +28,7 @@ class SpawnManager : Behavior() {
             e.image = sprite[randomInt(0, 2)]
             e.transform.position =
                 Vector3(randomInt(GameView.left, GameView.right).toFloat(), GameView.top + 100F)
-            enemySpawnTimer = 3000000F
+            enemySpawnTimer = 2F
         }
     }
 }

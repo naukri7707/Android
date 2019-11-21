@@ -8,5 +8,8 @@ class EnemyBehavior : Behavior() {
 
     override fun update() {
         transform.position.y -= speed * Time.deltaTime
+
+        if (transform.position.y < GameView.bottom - 100F)
+            destroy(gameObject)
     }
 }

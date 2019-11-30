@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HW9_1</string>
+    <string name="str_space" />
+    <string name="str_restart">重新開始</string>
+</resources>

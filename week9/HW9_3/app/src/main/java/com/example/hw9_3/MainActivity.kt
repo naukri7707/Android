@@ -96,29 +96,37 @@ class MainActivity : AppCompatActivity() {
         return setSymToBoard(i * 3 + j)
     }
 
+    private val aiPlayerStone get() = if (playerTurn) player else enemy
+    private val aiEnemyStone get() = if (playerTurn) enemy else player
+
     private fun aiSet() {
+
+        var readyHand = aiCheckReadyHand(aiPlayerStone)
+        if (readyHand != -1) {
+            setSymToBoard(readyHand)
+            return
+        }
+        readyHand = aiCheckReadyHand(aiEnemyStone)
+        if (readyHand != -1) {
+            setSymToBoard(readyHand)
+            return
+        }
         var best = 0
-        var bestScore = Long.MIN_VALUE
+        var bestScore = if (aiPlayerStone == player) Long.MAX_VALUE else Long.MIN_VALUE
         loop@ for (i in 0..8) {
             if (board[i] == ' ') {
                 board[i] = enemy
-                var score = 0L
-                when (checkWin()) {
-                    player -> {
-                        board[i] = ' '
-                        continue@loop
-                    }
-                    enemy -> {
-                        board[i] = ' '
+                val ev = aiThink(!playerTurn)
+                if (aiPlayerStone == player) {
+                    if (bestScore > ev) {
                         best = i
-                        break@loop
+                        bestScore = ev
                     }
-                    'D' -> score = 0
-                    else -> score = aiThink(true)
-                }
-                if (bestScore < score) {
-                    best = i
-                    bestScore = score
+                } else {
+                    if (bestScore < ev) {
+                        best = i
+                        bestScore = ev
+                    }
                 }
                 board[i] = ' '
             }
@@ -126,41 +134,114 @@ class MainActivity : AppCompatActivity() {
         setSymToBoard(best)
     }
 
-    private val wk = 10000000000L
+    private val wk = 1000000000L
 
     private fun aiThink(isPlayerTurn: Boolean): Long {
-        var weight = 0L
-        var possable = 0
+        var res = 0L
+        var pos = 0
         for (i in 0..8) {
             if (board[i] == ' ') {
                 board[i] = if (isPlayerTurn) player else enemy
                 when (checkWin()) {
-                    player -> weight -= wk
-                    enemy -> weight += wk
-                    ' ' -> weight += aiThink(!isPlayerTurn)
+                    aiPlayerStone -> {
+                        board[i] = ' '
+                        return wk
+                    }
+                    aiEnemyStone -> {
+                        board[i] = ' '
+                        return -wk
+                    }
+                    'D' -> {
+                        board[i] = ' '
+                        return 0
+                    }
+                    ' ' -> {
+                        res += aiThink(!isPlayerTurn)
+                        pos++
+                    }
                 }
-                possable++
                 board[i] = ' '
             }
         }
-        return weight / possable
+        return res / pos.coerceAtLeast(1)
     }
 
-    private fun checkWin(): Char {
+    // 檢查連線狀態
+    private fun checkLine(vararg pos: Int): Int {
+        var res = 0
+        pos.forEach {
+            res += when (board[it]) {
+                player -> 1
+                enemy -> -1
+                else -> 0
+            }
+        }
+        return res
+    }
+
+    // 檢查是否聽牌，若有回傳聽牌位置，若否回傳 -1
+    private fun aiCheckReadyHand(target: Char): Int {
+        val targetReadyVal = when (target) {
+            player -> 2
+            enemy -> -2
+            else -> 0
+        }
+        if (targetReadyVal == 0) return -1
+        // 橫豎
         for (i in 0..2) {
-            if (board[i] != ' ' && board[i] == board[3 + i] && board[i] == board[6 + i]) {
+            if (checkLine(i, 3 + i, 6 + i) == targetReadyVal) {
+                return when (' ') {
+                    board[i] -> i
+                    board[3 + i] -> 3 + i
+                    else -> 6 + i
+                }
+            }
+            if (checkLine(i * 3, i * 3 + 1, i * 3 + 2) == targetReadyVal) {
+                return when (' ') {
+                    board[i * 3] -> i * 3
+                    board[i * 3 + 1] -> i * 3 + 1
+                    else -> i * 3 + 2
+                }
+            }
+        }
+        // 斜線
+        if (checkLine(0, 4, 8) == targetReadyVal) {
+            return when (' ') {
+                board[0] -> 0
+                board[4] -> 4
+                else -> 8
+            }
+        }
+        if (checkLine(2, 4, 6) == targetReadyVal) {
+            return when (' ') {
+                board[2] -> 2
+                board[4] -> 4
+                else -> 6
+            }
+        }
+        return -1
+    }
+
+
+    // 檢查勝利
+    private fun checkWin(): Char {
+        // 橫豎
+        for (i in 0..2) {
+            if (checkLine(i, 3 + i, 6 + i) !in (-2..2)) {
                 return board[i]
             }
-            if (board[i * 3] != ' ' && board[i * 3] == board[i * 3 + 1] && board[i * 3] == board[i * 3 + 2]) {
+            if (checkLine(i * 3, i * 3 + 1, i * 3 + 2) !in (-2..2)) {
                 return board[i * 3]
             }
         }
-        if (board[0] != ' ' && board[0] == board[4] && board[0] == board[8]) {
+        // 斜線
+        if (checkLine(0, 4, 8) !in (-2..2)) {
             return board[0]
         }
-        if (board[2] != ' ' && board[2] == board[4] && board[4] == board[6]) {
+        if (checkLine(2, 4, 6) !in (-2..2)) {
             return board[2]
         }
+        // 檢查是否還有空格能填
         board.forEach {
             if (it == ' ') {
                 return ' '
@@ -182,7 +263,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             player = 'X'
             enemy = 'O'
-            aiSet()
+            setSymToBoard((0..8).random())
         }
     }
 }

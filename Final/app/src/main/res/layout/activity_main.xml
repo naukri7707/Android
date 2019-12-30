@@ -4,106 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <LinearLayout
-        android:id="@+id/lay_container"
+    <naukri.engine.GameView
+        android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn1_1"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn1_2"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn1_3"
-                style="@style/ButtonStyle" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn2_1"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn2_2"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn2_3"
-                style="@style/ButtonStyle" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn3_1"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn3_2"
-                style="@style/ButtonStyle" />
-
-            <Button
-                android:id="@+id/btn3_3"
-                style="@style/ButtonStyle" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnPlayerStone"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/str_o"
-            android:textSize="28sp"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/btnRestart"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
-            android:text="@string/str_restart"
-            android:textSize="28sp"
-            tools:ignore="ButtonStyle" />
-        <Button
-            android:id="@+id/btnNextState"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/next"
-            android:textSize="28sp"
-            tools:ignore="ButtonStyle" />
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 </LinearLayout>

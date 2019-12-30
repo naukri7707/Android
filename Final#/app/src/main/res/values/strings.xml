@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Final</string>
+    <string name="str_space" />
+    <string name="str_restart">重新開始</string>
+    <string name="str_o">O</string>
+    <string name="next"><![CDATA[->]]></string>
+</resources>

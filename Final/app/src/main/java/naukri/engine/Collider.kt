@@ -59,7 +59,10 @@ abstract class Collider : Component() {
 
         fun getOnCollisionEvents() {
             collection.forEach { collider ->
-                collection.forEach { other ->
+                var a = 0
+                val b = collection.filter { collider.layerMask and it.layer == 0 }
+                b.forEach { other ->
+                    a++
                     if (other != collider && collider.isCollision(other)) {
                         when (collider.collisions.contains(other)) {
                             // 已經處於碰撞 (Stay)
@@ -83,6 +86,7 @@ abstract class Collider : Component() {
                             }
                     }
                 }
+                val c = a
             }
         }
 
@@ -103,9 +107,13 @@ abstract class Collider : Component() {
     // 碰撞器中心點
     val colliderPosition
         get() = Vector2(
-            transform.position.x + offset.x,
-            transform.position.y + offset.y
+            transform.position.x + offset.x * transform.scale.x,
+            transform.position.y + offset.y * transform.scale.y
         )
+
+    val layer get() = gameObject.layer
+
+    val layerMask get() = gameObject.layerMask
 
     private val collisions = ArrayList<Collider>(4)
 

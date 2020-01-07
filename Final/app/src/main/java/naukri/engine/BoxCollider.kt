@@ -1,10 +1,9 @@
 package naukri.engine
 
-import android.graphics.Paint
 import android.graphics.RectF
 import kotlin.math.*
 
-class BoxCollider : Collider() {
+class BoxCollider() : Collider() {
 
     class Bounds(private val target: BoxCollider) {
         val size
@@ -24,7 +23,20 @@ class BoxCollider : Collider() {
         val rect get() = RectF(left, top, right, bottom)
     }
 
-    var size = Vector2(0F, 0F)
+    var size = Vector2(Float.NaN, Float.NaN)
+
+    constructor(width: Float, height: Float) : this() {
+        size.x = width
+        size.y = height
+    }
+
+    constructor(awake: (BoxCollider) -> Unit) : this() {
+        lateConstructor = { awake(this) }
+    }
+
+    constructor(width: Float, height: Float, awake: (BoxCollider) -> Unit) : this(width, height) {
+        this.lateConstructor = { awake(this) }
+    }
 
     val left get() = colliderPosition.x - (size.x / 2)
 
@@ -39,8 +51,9 @@ class BoxCollider : Collider() {
     val bounds get() = Bounds(this)
 
     override fun iAwake() {
+        if (size.x.isNaN() && size.y.isNaN())
+            setSizeAsSpriteRender()
         super.iAwake()
-        setSizeAsSpriteRender()
     }
 
     override fun <T : Collider> isCollision(other: T): Boolean {
@@ -79,6 +92,8 @@ class BoxCollider : Collider() {
         val sr = getComponent<SpriteRender>()
         if (sr != null) {
             size = sr.size.toVector2()
+        } else {
+            size = Vector2(0F, 0F)
         }
     }
 

@@ -30,4 +30,9 @@ data class Vector2Int(
     fun toVector2(): Vector2 {
         return Vector2(x.toFloat(), y.toFloat())
     }
+
+    fun set(x: Int, y: Int) {
+        this.x = x
+        this.y = y
+    }
 }

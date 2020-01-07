@@ -2,16 +2,28 @@ package naukri.engine
 
 import kotlin.math.abs
 
-class CircleCollider : Collider() {
+class CircleCollider() : Collider() {
 
-    class Bounds(target: CircleCollider) {
+    class Bounds(val target: CircleCollider) {
         // 縮放率只受 x 軸控制、亦會因x軸改變而同時改變y來保持圓型而非變形成橢圓
-        var radius = target.radius * target.transform.scale.x
+        val radius get() = target.radius * target.transform.scale.x
     }
 
     var radius = 0F
 
     val bounds get() = Bounds(this)
+
+    constructor(radius: Float) : this() {
+        this.radius = radius
+    }
+
+    constructor(awake: (CircleCollider) -> Unit) : this() {
+        lateConstructor = { awake(this) }
+    }
+
+    constructor(radius: Float, awake: (CircleCollider) -> Unit) : this(radius) {
+        lateConstructor = { awake(this) }
+    }
 
     override fun <T : Collider> isCollision(other: T): Boolean {
         when (other) {
@@ -37,10 +49,7 @@ class CircleCollider : Collider() {
                 }
             }
             is CircleCollider -> {
-                val dis = Vector2.distance(
-                    gameObject.transform.position,
-                    other.transform.position
-                )
+                val dis = Vector2.distance(colliderPosition, other.colliderPosition)
                 return dis <= bounds.radius + other.bounds.radius
             }
         }

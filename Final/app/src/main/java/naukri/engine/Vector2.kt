@@ -55,6 +55,11 @@ data class Vector2(
         return Vector2() - this
     }
 
+    fun set(x: Float, y: Float) {
+        this.x = x
+        this.y = y
+    }
+
     fun toVector2Int(): Vector2Int {
         return Vector2Int(x.toInt(), y.toInt())
     }

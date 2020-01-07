@@ -2,7 +2,7 @@ package naukri.engine
 
 import kotlin.concurrent.timer
 
-class Transform : Component() {
+class Transform() : Component() {
     // 相對於父物件的坐標軸
     var localPosition = Vector2(0F, 0F)
 
@@ -15,6 +15,12 @@ class Transform : Component() {
         }
     // 圖層索引，越大越上層
     var zIndex = 0
+        set(value) {
+            if (value != field) {
+                Render.reSort = true
+                field = value
+            }
+        }
 
     // 父物件
     var parent = this
@@ -27,16 +33,15 @@ class Transform : Component() {
     // 子物件
     val children = ArrayList<Transform>()
 
+    constructor(awake: (Transform) -> Unit) : this() {
+        lateConstructor = { awake(this) }
+    }
+
     // 真實坐標軸
     var position: Vector2
         get() {
-            var res = localPosition
-            var current = this
-            while (current != current.parent) {
-                res += current.parent.transform.localPosition
-                current = current.parent
-            }
-            return res
+            return if (this == parent) localPosition
+            else localPosition + parent.transform.position
         }
         set(value) {
             localPosition += value - position
